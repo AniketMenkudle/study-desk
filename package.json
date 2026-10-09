@@ -1,0 +1,14 @@
+{
+  "name": "study-desk",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "install:all": "npm install --prefix client && npm install --prefix server",
+    "dev": "concurrently -n CLIENT,SERVER -c blue,green \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

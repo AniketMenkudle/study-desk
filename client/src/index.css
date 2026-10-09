@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* `dark:` utilities follow the sidebar toggle (data-theme on <html>) */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------- Theme colours (switch with data-theme) ---------- */
+:root {
+  --c-canvas: #f3f2ff;
+  --c-surface: #ffffff;
+  --c-surface2: #f7f6ff;
+  --c-ink: #17153a;
+  --c-soft: #5c5a85;
+  --c-primary: #6c4cff;
+  --c-primary-dark: #4c32d6;
+  --c-primary-soft: #ece8ff;
+  --c-line: #e1def5;
+  --c-line-strong: #c6c1ea;
+  --c-good: #12966e;
+  --c-good-bg: #e3f7ef;
+  --c-bad: #e23c5a;
+  --c-bad-bg: #fde8ec;
+  --c-warn: #d98c00;
+  --c-warn-bg: #fff3d6;
+  --c-info: #2f8cff;
+  --c-info-bg: #e5f1ff;
+  --glow-1: rgba(108, 76, 255, 0.13);
+  --glow-2: rgba(0, 194, 255, 0.11);
+}
+[data-theme="dark"] {
+  --c-canvas: #0d0c22;
+  --c-surface: #17163a;
+  --c-surface2: #1d1c47;
+  --c-ink: #edeaff;
+  --c-soft: #a9a6d6;
+  --c-primary: #8b74ff;
+  --c-primary-dark: #a794ff;
+  --c-primary-soft: #28245f;
+  --c-line: #2c2a5e;
+  --c-line-strong: #43408a;
+  --c-good: #3ddba7;
+  --c-good-bg: rgba(61, 219, 167, 0.13);
+  --c-bad: #ff6b87;
+  --c-bad-bg: rgba(255, 107, 135, 0.14);
+  --c-warn: #ffc247;
+  --c-warn-bg: rgba(255, 194, 71, 0.14);
+  --c-info: #5eb0ff;
+  --c-info-bg: rgba(94, 176, 255, 0.14);
+  --glow-1: rgba(108, 76, 255, 0.22);
+  --glow-2: rgba(0, 184, 245, 0.12);
+}
+
+/* `inline` makes utilities read the live CSS variables above */
+@theme inline {
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-surface2: var(--c-surface2);
+  --color-ink: var(--c-ink);
+  --color-soft: var(--c-soft);
+  --color-primary: var(--c-primary);
+  --color-primary-dark: var(--c-primary-dark);
+  --color-primary-soft: var(--c-primary-soft);
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+  --color-good: var(--c-good);
+  --color-good-bg: var(--c-good-bg);
+  --color-bad: var(--c-bad);
+  --color-bad-bg: var(--c-bad-bg);
+  --color-warn: var(--c-warn);
+  --color-warn-bg: var(--c-warn-bg);
+  --color-info: var(--c-info);
+  --color-info-bg: var(--c-info-bg);
+  --color-cyan: #00b8f5;
+  --color-accent: #ff5d8f;
+
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --shadow-soft: 0 2px 8px -2px rgba(76, 50, 214, 0.18);
+  --shadow-lift: 0 10px 30px -12px rgba(76, 50, 214, 0.3);
+
+  --animate-rise: rise 0.45s ease backwards;
+  --animate-pop: pop 0.4s ease;
+  --animate-shake: shake 0.4s ease;
+  --animate-float: float 3.4s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.4s linear infinite;
+  --animate-bounce-dot: bounce-dot 1s ease-in-out infinite;
+
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pop { 0% { transform: scale(0.97); } 55% { transform: scale(1.015); } 100% { transform: scale(1); } }
+  @keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(3px); } }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+  @keyframes bounce-dot { 0%,80%,100% { transform: scale(0.5); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; } }
+}
+
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--c-ink);
+    background:
+      radial-gradient(900px 500px at 85% -10%, var(--glow-1), transparent 60%),
+      radial-gradient(700px 480px at 10% 110%, var(--glow-2), transparent 60%),
+      var(--c-canvas);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible { outline: 2px solid var(--c-primary); outline-offset: 2px; }
+  input[type="range"], input[type="checkbox"] { accent-color: var(--c-primary); }
+  select option { color: #17153a; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,30 @@
+STUDY DESK - QUICK START (Windows / Mac / Linux)
+=================================================
+
+You need:  Node.js 20.19 or newer (https://nodejs.org, LTS)   and   MongoDB running
+           (MongoDB Community Server locally, OR a free MongoDB Atlas cluster).
+
+1) Open server\.env and replace   your_gemini_api_key_here   with your Gemini API key.
+   (MONGO_URI and JWT_SECRET are already filled in. For Atlas, paste your Atlas
+    connection string into MONGO_URI.)
+
+2) Open a terminal in this folder (the one containing this file) and run:
+
+       npm install
+       npm run install:all
+
+3) Start everything:
+
+       npm run dev
+
+4) Open  http://localhost:5173  ->  click "Create an account"  ->  start studying.
+
+Troubleshooting
+- "Failed to connect to MongoDB": start MongoDB (Windows: Services -> MongoDB Server),
+  or use an Atlas connection string in MONGO_URI.
+- "JWT_SECRET is missing": make sure the file is named exactly  .env  inside the server folder.
+- AI answers fail: check GOOGLE_API_KEY, and that GEMINI_MODEL is a current model name.
+- Port in use: change PORT in server\.env (and VITE_API_URL in client\.env to match).
+- Reminders made before this update are not shown (they had no owner).
+
+Do NOT share server\.env - it holds your secrets.
